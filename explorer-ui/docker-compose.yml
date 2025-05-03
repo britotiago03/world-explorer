@@ -1,0 +1,6 @@
+services:
+  explorer-ui:
+    build: .
+    container_name: explorer-ui
+    ports:
+      - "3000:80"
