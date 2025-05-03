@@ -99,3 +99,40 @@ api-gateway/test/types/index.js
 
 # compiled app
 api-gateway/dist
+
+#============================
+# country-service
+#============================
+country-service/HELP.md
+country-service/target/
+country-service/!.mvn/wrapper/maven-wrapper.jar
+country-service/!**/src/main/**/target/
+country-service/!**/src/test/**/target/
+
+### STS ###
+country-service/.apt_generated
+country-service/.classpath
+country-service/.factorypath
+country-service/.project
+country-service/.settings
+country-service/.springBeans
+country-service/.sts4-cache
+
+### IntelliJ IDEA ###
+country-service/.idea
+country-service/*.iws
+country-service/*.iml
+country-service/*.ipr
+
+### NetBeans ###
+country-service/nbproject/private/
+country-service/nbbuild/
+country-service/dist/
+country-service/nbdist/
+country-service/.nb-gradle/
+country-service/build/
+country-service/!**/src/main/**/build/
+country-service/!**/src/test/**/build/
+
+### VS Code ###
+country-service/.vscode/
