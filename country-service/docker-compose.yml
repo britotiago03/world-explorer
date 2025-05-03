@@ -1,0 +1,12 @@
+services:
+  country-service:
+    build: .
+    container_name: country-service
+    ports:
+      - "8080:8080"
+    networks:
+      - geo-db-network
+
+networks:
+  geo-db-network:
+    external: true
