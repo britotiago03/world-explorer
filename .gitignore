@@ -1,0 +1,30 @@
+#============================
+# explorer-ui
+#============================
+explorer-ui/test-results
+explorer-ui/node_modules
+
+# Output
+explorer-ui/.output
+explorer-ui/.vercel
+explorer-ui/.netlify
+explorer-ui/.wrangler
+explorer-ui/.svelte-kit
+explorer-ui/build
+
+# OS
+explorer-ui/.DS_Store
+explorer-ui/Thumbs.db
+
+# Env
+explorer-ui/.env
+explorer-ui/.env.*
+explorer-ui/!.env.example
+explorer-ui/!.env.test
+
+# Vite
+explorer-ui/vite.config.js.timestamp-*
+explorer-ui/vite.config.ts.timestamp-*
+
+# Paraglide
+explorer-ui/src/lib/paraglide
