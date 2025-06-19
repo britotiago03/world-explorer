@@ -1,14 +1,13 @@
 <!-- admin-ui/src/routes/+page.svelte -->
 <script>
 	import { onMount } from 'svelte';
+	import { API_BASE_URL, buildApiUrl } from '$lib/config/environment.js';
 
 	let stats = {
 		totalCountries: 0,
 		loading: true,
 		error: null
 	};
-
-	const API_BASE_URL = 'http://localhost:3000'; // API Gateway URL
 
 	onMount(async () => {
 		await loadStats();
@@ -19,7 +18,7 @@
 			stats.loading = true;
 			stats.error = null;
 
-			const response = await fetch(`${API_BASE_URL}/api/countries`);
+			const response = await fetch(buildApiUrl('/api/countries'));
 			if (!response.ok) {
 				throw new Error(`HTTP error! status: ${response.status}`);
 			}
@@ -45,6 +44,7 @@
 		<div class="mb-8">
 			<h1 class="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
 			<p class="mt-2 text-gray-600">Manage countries data for World Explorer</p>
+			<p class="text-sm text-gray-500">API: {API_BASE_URL}</p>
 		</div>
 
 		<!-- Statistics Cards -->
@@ -173,7 +173,7 @@
 					<div class="ml-3">
 						<h3 class="text-sm font-medium text-red-800">Connection Error</h3>
 						<p class="text-sm text-red-700 mt-1">{stats.error}</p>
-						<p class="text-sm text-red-600 mt-1">Make sure the API Gateway and Country Service are running.</p>
+						<p class="text-sm text-red-600 mt-1">Make sure the API Gateway and Country Service are running at {API_BASE_URL}</p>
 					</div>
 				</div>
 			</div>

@@ -1,14 +1,13 @@
 <!-- admin-ui/src/routes/countries/+page.svelte -->
 <script>
 	import { onMount } from 'svelte';
+	import { API_BASE_URL, buildApiUrl } from '$lib/config/environment.js';
 
 	let countries = [];
 	let loading = true;
 	let error = null;
 	let searchQuery = '';
 	let deleteConfirm = { show: false, country: null };
-
-	const API_BASE_URL = 'http://localhost:3000'; // API Gateway URL
 
 	onMount(async () => {
 		await loadCountries();
@@ -19,7 +18,7 @@
 			loading = true;
 			error = null;
 
-			const response = await fetch(`${API_BASE_URL}/api/countries`);
+			const response = await fetch(buildApiUrl('/api/countries'));
 			if (!response.ok) {
 				throw new Error(`HTTP error! status: ${response.status}`);
 			}
@@ -35,7 +34,7 @@
 
 	async function deleteCountry(id) {
 		try {
-			const response = await fetch(`${API_BASE_URL}/api/countries/${id}`, {
+			const response = await fetch(buildApiUrl(`/api/countries/${id}`), {
 				method: 'DELETE'
 			});
 

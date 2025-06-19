@@ -1,14 +1,13 @@
 <!-- admin-ui/src/routes/bulk-import/+page.svelte -->
 <script>
 	import { onMount } from 'svelte';
+	import { buildApiUrl } from '$lib/config/environment.js';
 
 	let importing = false;
 	let error = null;
 	let success = null;
 	let importResults = null;
 	let jsonData = '';
-
-	const API_BASE_URL = 'http://localhost:3000'; // API Gateway URL
 
 	const sampleData = [
 		{
@@ -112,7 +111,7 @@
 
 			for (const country of countries) {
 				try {
-					const response = await fetch(`${API_BASE_URL}/api/countries`, {
+					const response = await fetch(buildApiUrl(`/api/countries/${id}`), {
 						method: 'POST',
 						headers: {
 							'Content-Type': 'application/json'

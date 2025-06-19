@@ -3,6 +3,7 @@
 	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
+	import { buildApiUrl } from '$lib/config/environment.js';
 
 	let loading = true;
 	let saving = false;
@@ -33,7 +34,6 @@
 		recognizedLanguages: ['']
 	};
 
-	const API_BASE_URL = 'http://localhost:3000'; // API Gateway URL
 	$: countryId = $page.params.id;
 
 	onMount(async () => {
@@ -47,7 +47,7 @@
 			loading = true;
 			error = null;
 
-			const response = await fetch(`${API_BASE_URL}/api/countries/${id}`);
+			const response = await fetch(buildApiUrl(`/api/countries/${id}`));
 			if (!response.ok) {
 				if (response.status === 404) {
 					throw new Error('Country not found');
@@ -107,7 +107,7 @@
 				recognizedLanguages: formData.recognizedLanguages.filter(lang => lang.trim() !== '')
 			};
 
-			const response = await fetch(`${API_BASE_URL}/api/countries/${countryId}`, {
+			const response = await fetch(buildApiUrl(`/api/countries/${countryId}`), {
 				method: 'PUT',
 				headers: {
 					'Content-Type': 'application/json'

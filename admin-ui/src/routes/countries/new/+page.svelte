@@ -2,6 +2,7 @@
 <script>
 	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
+	import { buildApiUrl } from '$lib/config/environment.js';
 
 	let loading = false;
 	let error = null;
@@ -30,8 +31,6 @@
 		recognizedLanguages: ['']
 	};
 
-	const API_BASE_URL = 'http://localhost:3000'; // API Gateway URL
-
 	async function handleSubmit() {
 		try {
 			loading = true;
@@ -49,7 +48,7 @@
 				recognizedLanguages: formData.recognizedLanguages.filter(lang => lang.trim() !== '')
 			};
 
-			const response = await fetch(`${API_BASE_URL}/api/countries`, {
+			const response = await fetch(buildApiUrl('/api/countries'), {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'
