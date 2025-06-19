@@ -1,22 +1,24 @@
-# Dockerfile
+# Use official Node.js image with support for pnpm
 FROM node:20-alpine
 
-# Enable pnpm
-RUN corepack enable && corepack prepare pnpm@latest --activate
-
+# Set working directory
 WORKDIR /app
 
-ENV NODE_ENV=development
+# Install pnpm
+RUN corepack enable && corepack prepare pnpm@latest --activate
 
-# Install deps
-COPY pnpm-lock.yaml package.json ./
-RUN pnpm install
+# Copy package files and install dependencies
+COPY package.json pnpm-lock.yaml ./
+RUN pnpm install --frozen-lockfile
 
-# Copy source files
+# Copy the rest of the source code
 COPY . .
 
-# Build TS files
+# Build the TypeScript project
 RUN pnpm build
 
-# Start the compiled app
-CMD ["node", "dist/app.js"]
+# Expose the port
+EXPOSE 3011
+
+# Start the application
+CMD ["pnpm", "start"]
