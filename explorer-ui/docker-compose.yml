@@ -3,4 +3,4 @@ services:
     build: .
     container_name: explorer-ui
     ports:
-      - "3000:80"
+      - "3001:80"
