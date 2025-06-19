@@ -3,10 +3,10 @@ services:
     build: .
     container_name: country-service
     ports:
-      - "8080:8080"
+      - "8085:8085"
     networks:
-      - geo-db-network
+      - db-network
 
 networks:
-  geo-db-network:
+  db-network:
     external: true

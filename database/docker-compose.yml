@@ -1,0 +1,19 @@
+services:
+  db:
+    image: postgres:16
+    container_name: db
+    environment:
+      POSTGRES_USER: database
+      POSTGRES_PASSWORD: database123
+      POSTGRES_DB: db
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+    networks:
+      - db-network
+
+networks:
+  db-network:
+    external: true
