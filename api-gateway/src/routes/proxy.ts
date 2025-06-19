@@ -2,20 +2,16 @@ import fp from 'fastify-plugin'
 import fastifyHttpProxy from '@fastify/http-proxy'
 
 export default fp(async (fastify) => {
-    // Map routes to services
+    // Map routes to services - use container names for Docker networking
     const routes = {
-        '/order': 'http://localhost:3010',
-        '/payment': 'http://localhost:3011',
-        '/project': 'http://localhost:3012',
-        '/contract': 'http://localhost:3013',
-        '/monitor': 'http://localhost:3014',
+        '/api/countries': 'http://country-service:3020',
     }
 
     for (const [prefix, target] of Object.entries(routes)) {
         fastify.register(fastifyHttpProxy, {
             upstream: target,
             prefix,
-            rewritePrefix: prefix,
+            rewritePrefix: '/api/countries', // Rewrite to match country service endpoint
             http2: false,
         })
     }

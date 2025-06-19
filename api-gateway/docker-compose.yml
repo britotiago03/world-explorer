@@ -9,3 +9,12 @@ services:
     environment:
       NODE_ENV: production
       PORT: 3011
+    networks:
+      - user-interface
+      - api-gateway
+
+networks:
+  user-interface:
+    external: true
+  api-gateway:
+    external: true
