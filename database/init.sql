@@ -7,6 +7,7 @@ CREATE SCHEMA IF NOT EXISTS religion_schema;
 CREATE SCHEMA IF NOT EXISTS geography_schema;
 CREATE SCHEMA IF NOT EXISTS region_schema;
 CREATE SCHEMA IF NOT EXISTS climate_schema;
+CREATE SCHEMA IF NOT EXISTS event_schema;
 
 -- Main country table
 CREATE TABLE IF NOT EXISTS country_schema.countries (
@@ -50,3 +51,20 @@ CREATE TABLE IF NOT EXISTS country_schema.country_recognized_languages (
     language TEXT,
     FOREIGN KEY (country_id) REFERENCES country_schema.countries(id) ON DELETE CASCADE
 );
+
+-- Event service tables
+CREATE TABLE IF NOT EXISTS event_schema.events (
+    id SERIAL PRIMARY KEY,
+    event_type VARCHAR(50) NOT NULL,
+    source VARCHAR(50) NOT NULL,
+    entity_id BIGINT,
+    data TEXT,
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    version VARCHAR(10) DEFAULT '1.0'
+);
+
+-- Indexes for event table for better performance
+CREATE INDEX IF NOT EXISTS idx_events_type ON event_schema.events(event_type);
+CREATE INDEX IF NOT EXISTS idx_events_source ON event_schema.events(source);
+CREATE INDEX IF NOT EXISTS idx_events_timestamp ON event_schema.events(timestamp);
+CREATE INDEX IF NOT EXISTS idx_events_entity_id ON event_schema.events(entity_id);
