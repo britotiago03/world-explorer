@@ -1,0 +1,16 @@
+services:
+  event-service:
+    build: .
+    container_name: event-service
+    ports:
+      - "3021:3021"
+    networks:
+      - api-gateway
+      - db-network
+    restart: unless-stopped
+
+networks:
+  api-gateway:
+    external: true
+  db-network:
+    external: true
