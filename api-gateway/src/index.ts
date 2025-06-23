@@ -1,16 +1,16 @@
 import Fastify from 'fastify'
 import cors from './plugins/cors'
 import proxyRoutes from './routes/proxy'
-import sessionTracking from './routes/session-tracking'
+import eventRoutes from './routes/events'
 
 const app = Fastify()
 
 app.register(cors)
 app.register(proxyRoutes)
-app.register(sessionTracking)
+app.register(eventRoutes)
 
-// Get port from environment variable, fallback to 3000
-const port = parseInt(process.env.PORT || '3000', 10)
+// Get port from environment variable, fallback to 3011 to match Docker
+const port = parseInt(process.env.PORT || '3011', 10)
 
 app.listen({ port, host: '0.0.0.0' }, err => {
     if (err) {

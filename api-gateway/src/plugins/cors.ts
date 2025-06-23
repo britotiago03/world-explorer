@@ -6,5 +6,7 @@ export default fp(async (fastify) => {
     fastify.register(fastifyCors, {
         origin: '*',
         credentials: true,
+        methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
+        allowedHeaders: ['Content-Type', 'Authorization', 'Cache-Control'],
     })
 })
