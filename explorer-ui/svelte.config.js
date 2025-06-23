@@ -7,7 +7,9 @@ const config = {
 	preprocess: [vitePreprocess(), mdsvex()],
 
 	kit: {
-		adapter: adapter(),
+		adapter: adapter({
+			fallback: 'index.html' // Enable SPA mode for dynamic routes
+		}),
 		prerender: {
 			handleHttpError: ({ path, message }) => {
 				// Don't throw errors for missing pages during build
@@ -16,7 +18,8 @@ const config = {
 					return;
 				}
 				throw new Error(message);
-			}
+			},
+			handleMissingId: 'warn'
 		}
 	},
 
