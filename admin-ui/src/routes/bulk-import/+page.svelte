@@ -111,7 +111,8 @@
 
 			for (const country of countries) {
 				try {
-					const response = await fetch(buildApiUrl(`/api/countries/${id}`), {
+					// FIX: Use correct endpoint instead of ${id}
+					const response = await fetch(buildApiUrl('/api/countries'), {
 						method: 'POST',
 						headers: {
 							'Content-Type': 'application/json'

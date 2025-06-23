@@ -84,7 +84,7 @@
 					{/if}
 				</p>
 			</div>
-			<a href="/countries/new" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition">
+			<a href="/countries/new" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition cursor-pointer">
 				Add New Country
 			</a>
 		</div>
@@ -98,7 +98,7 @@
 					id="search"
 					bind:value={searchQuery}
 					placeholder="Search by name, capital, or official name..."
-					class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+					class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent cursor-text"
 				/>
 			</div>
 		</div>
@@ -120,7 +120,7 @@
 					<div>
 						<h3 class="text-lg font-medium text-red-800">Error Loading Countries</h3>
 						<p class="text-red-600 mt-1">{error}</p>
-						<button on:click={loadCountries} class="mt-3 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded text-sm transition">
+						<button on:click={loadCountries} class="mt-3 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded text-sm transition cursor-pointer">
 							Try Again
 						</button>
 					</div>
@@ -135,7 +135,7 @@
 				</svg>
 				<h3 class="mt-4 text-lg font-medium text-gray-900">No countries found</h3>
 				<p class="mt-2 text-gray-600">Get started by adding your first country.</p>
-				<a href="/countries/new" class="mt-4 inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition">
+				<a href="/countries/new" class="mt-4 inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition cursor-pointer">
 					Add First Country
 				</a>
 			</div>
@@ -178,10 +178,10 @@
 								</td>
 								<td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
 									<div class="flex space-x-2">
-										<a href="/countries/{country.id}/edit" class="text-blue-600 hover:text-blue-800 transition">
+										<a href="/countries/{country.id}/edit" class="text-blue-600 hover:text-blue-800 transition cursor-pointer">
 											Edit
 										</a>
-										<button on:click={() => showDeleteConfirm(country)} class="text-red-600 hover:text-red-800 transition">
+										<button on:click={() => showDeleteConfirm(country)} class="text-red-600 hover:text-red-800 transition cursor-pointer">
 											Delete
 										</button>
 									</div>
@@ -194,7 +194,7 @@
 				{#if filteredCountries.length === 0 && searchQuery}
 					<div class="text-center py-8">
 						<p class="text-gray-500">No countries match your search for "{searchQuery}"</p>
-						<button on:click={() => searchQuery = ''} class="mt-2 text-blue-600 hover:text-blue-800 transition">
+						<button on:click={() => searchQuery = ''} class="mt-2 text-blue-600 hover:text-blue-800 transition cursor-pointer">
 							Clear Search
 						</button>
 					</div>
@@ -218,10 +218,10 @@
 				Are you sure you want to delete <strong>{deleteConfirm.country?.name}</strong>? This action cannot be undone.
 			</p>
 			<div class="flex justify-end space-x-3">
-				<button on:click={hideDeleteConfirm} class="px-4 py-2 text-gray-700 bg-gray-200 hover:bg-gray-300 rounded transition">
+				<button on:click={hideDeleteConfirm} class="px-4 py-2 text-gray-700 bg-gray-200 hover:bg-gray-300 rounded transition cursor-pointer">
 					Cancel
 				</button>
-				<button on:click={() => deleteCountry(deleteConfirm.country.id)} class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded transition">
+				<button on:click={() => deleteCountry(deleteConfirm.country.id)} class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded transition cursor-pointer">
 					Delete
 				</button>
 			</div>
