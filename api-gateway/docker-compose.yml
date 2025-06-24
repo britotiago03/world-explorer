@@ -9,6 +9,8 @@ services:
     environment:
       NODE_ENV: production
       PORT: 3011
+      EVENT_SERVICE_URL: http://event-service:3021
+
     networks:
       - user-interface
       - api-gateway
